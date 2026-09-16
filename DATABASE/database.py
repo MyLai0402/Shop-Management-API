@@ -1128,34 +1128,6 @@ conn= sqlite3.connect("database.db")    # kết nối DATABASE
   #print("  đã xử lí xong ")
 
 
-#############################  PHẦN 4: FASTAPI KẾT NỐI DATABASE #############################################
-              #qua trang fastapi_database.py chạy vì bên đây dễ bị trùng dữ liệu cũ 
-from sqlalchemy import create_engine
-engine= create_engine("sqlite:///database.db")   # engine giúp SQLAICHEMY kết nối cụ thể database nào?
-
-from sqlalchemy.orm import sessionmaker           #sessionmaker:tạo "khuôn " để tạo session 
-SessionLocal = sessionmaker (bind=engine)     #sessionLocal:tên đặt cho khuôn đó , bind= engine: session sử dụng cho engine nào, phiên làm việc với data
-db = SessionLocal()       # tạo 1 session thực thể thao tác dữ liệu 
-
-from sqlalchemy.orm import DeclarativeBase  #DeclarativeBase: nền của SQLAIchemy để tạo model
-class Base (DeclarativeBase):       #base: tên tự đặt 
-  pass  #pass: chưa có nội dung riêng 
-
-from sqlalchemy.orm import Mapped,mapped_column
-class sinhvienmoi(Base):
-  __tablename__="sinhvienmoi"
-  id: Mapped[int] = mapped_column(primary_key=True)   #mapped :ánh xạ/ được liên kết với ...
-  ten:Mapped[str]
-  tuoi:Mapped[int]
-Base.metadata.create_all(engine) #lấy tất cả dữ liệu trên model đã khai báo trong base , rồi tạo những bảng tương ứng trong database thông qua engine
-
-sv1= sinhvienmoi(id=1,ten='An',tuoi=20) #tạo dữ liệu 
-db.add(sv1) #đưa sv1 vào session chuẩn bị lưu
-db.commit() # lưu thay đổi vào database
-
-ds_sv=db.query(sinhvienmoi).all()
-for hs in ds_sv:
-  print(hs.id,hs.ten,hs.tuoi)
 
 
 
