@@ -28,18 +28,18 @@ A RESTful API for managing shops, customers, products, and shop-related data.
 - Commit and Rollback
 - Database operations with SQLAlchemy
 
-## Project Structure
+## Cấu trúc dự án
 
 ```text
-DATABASE/
-├── shop_management_api.py
-├── main.py
-├── database.py
-├── database.db
-├── pyproject.toml
-├── uv.lock
-├── requirements.txt
+Shop-Management-API/
+├── CRUD_PROJECT/
+├── DATABASE/
+│ ├── .gitignore
+│ └── shop_management_api.py
 ├── .gitignore
-└── README.md
-
+├── README.md
+├── main.py
+├── pyproject.toml
+└── uv.lock
+```
 
